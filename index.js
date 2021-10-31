@@ -72,7 +72,7 @@ async function run() {
         app.delete('/deleteMyTour/:id', async (req, res) => {
             const id = req.params.id;
             // console.log(id)
-            const query = { _id: id };
+            const query = { _id: ObjectId(id) };
             const result = await bookingCollection.deleteOne(query);
             console.log(result);
             res.send(result.acknowledged);
@@ -81,7 +81,7 @@ async function run() {
         app.delete('/allBookings/:id', async (req, res) => {
             const id = req.params.id;
             // console.log(id)
-            const query = { _id: id };
+            const query = { _id: ObjectId(id) };
             const result = await bookingCollection.deleteOne(query);
             console.log(result);
             res.send(result.acknowledged);
@@ -89,7 +89,7 @@ async function run() {
         //get api for approving booking
         app.get('/allBookings/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: id };
+            const query = { _id: ObjectId(id) };
             const result = await bookingCollection.findOne(query);
             console.log('load booking with id: ', result);
             res.send(result);
@@ -100,7 +100,7 @@ async function run() {
             const id = req.params.id;
             // console.log(id)
             const updateBooking = req.body;
-            const filter = { _id: id };
+            const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
